@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>oat — Design System</title>
+  <link rel="stylesheet" href="src/css/00-base.css">
+  <link rel="stylesheet" href="src/css/01-theme.css">
+  <link rel="stylesheet" href="src/css/animations.css">
+  <link rel="stylesheet" href="src/css/avatar.css">
+  <link rel="stylesheet" href="src/css/button.css">
+  <link rel="stylesheet" href="src/css/form.css">
+  <link rel="stylesheet" href="src/css/table.css">
+  <link rel="stylesheet" href="src/css/progress.css">
+  <link rel="stylesheet" href="src/css/spinner.css">
+  <link rel="stylesheet" href="src/css/grid.css">
+  <link rel="stylesheet" href="src/css/card.css">
+  <link rel="stylesheet" href="src/css/alert.css">
+  <link rel="stylesheet" href="src/css/badge.css">
+  <link rel="stylesheet" href="src/css/accordion.css">
+  <link rel="stylesheet" href="src/css/tabs.css">
+  <link rel="stylesheet" href="src/css/dialog.css">
+  <link rel="stylesheet" href="src/css/dropdown.css">
+  <link rel="stylesheet" href="src/css/toast.css">
+  <link rel="stylesheet" href="src/css/sidebar.css">
+  <link rel="stylesheet" href="src/css/skeleton.css">
+  <link rel="stylesheet" href="src/css/tooltip.css">
+  <link rel="stylesheet" href="src/css/utilities.css">
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       DESIGN SYSTEM PAGE CHROME
+       ═══════════════════════════════════════════════════════════ */
+
+    /* Reset main padding for this page */
+    main { padding-block-start: 0; }
+
+    .ds-layout {
+      display: grid;
+      grid-template-columns: 15rem 1fr;
+      min-height: 100vh;
+    }
+
+    /* Sidebar nav */
+    .ds-nav {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      border-inline-end: 1px solid var(--border);
+      padding: var(--space-6) var(--space-3);
+      font-size: var(--text-7);
+    }
+
+    .ds-nav-logo {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-2);
+      padding: 0 var(--space-3);
+      margin-block-end: var(--space-6);
+      font-weight: var(--font-bold);
+      font-size: var(--text-5);
+      text-decoration: none;
+      color: var(--foreground);
+    }
+
+    .ds-nav-logo span {
+      font-size: var(--text-8);
+      color: var(--muted-foreground);
+      font-weight: var(--font-normal);
+    }
+
+    .ds-nav-group {
+      margin-block-end: var(--space-4);
+    }
+
+    .ds-nav-label {
+      display: block;
+      padding: var(--space-1) var(--space-3);
+      font-size: var(--text-8);
+      font-weight: var(--font-semibold);
+      color: var(--muted-foreground);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-block-end: var(--space-1);
+    }
+
+    .ds-nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .ds-nav a {
+      display: block;
+      padding: var(--space-1) var(--space-3);
+      color: var(--foreground);
+      text-decoration: none;
+      border-radius: var(--radius-small);
+      transition: background-color var(--transition-fast);
+      &:hover { background-color: var(--accent); }
+      &.active { background-color: var(--accent); font-weight: var(--font-medium); }
+    }
+
+    .ds-nav-theme {
+      margin-block-start: auto;
+      padding-block-start: var(--space-4);
+      border-block-start: 1px solid var(--border);
+    }
+
+    /* Main content */
+    .ds-main {
+      min-width: 0;
+      padding: var(--space-8) var(--space-8) var(--space-16);
+    }
+
+    /* Section */
+    .ds-section {
+      margin-block-end: var(--space-16);
+      scroll-margin-top: var(--space-6);
+    }
+
+    .ds-section-title {
+      font-size: var(--text-2);
+      margin-block-end: var(--space-2);
+      padding-block-end: var(--space-3);
+      border-block-end: 1px solid var(--border);
+    }
+
+    .ds-section-desc {
+      color: var(--muted-foreground);
+      margin-block-end: var(--space-6);
+    }
+
+    /* Subsection */
+    .ds-sub {
+      margin-block-start: var(--space-8);
+      margin-block-end: var(--space-6);
+    }
+
+    .ds-sub-title {
+      font-size: var(--text-5);
+      font-weight: var(--font-semibold);
+      margin-block-end: var(--space-3);
+      color: var(--muted-foreground);
+    }
+
+    /* Preview box */
+    .ds-preview {
+      padding: var(--space-6);
+      background-color: var(--faint);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-medium);
+      margin-block-end: var(--space-2);
+    }
+
+    .ds-preview.padded { padding: var(--space-8); }
+
+    /* Token table */
+    .ds-token-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+      gap: var(--space-3);
+      margin-block-end: var(--space-6);
+    }
+
+    .ds-token-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-medium);
+      overflow: hidden;
+      font-size: var(--text-8);
+    }
+
+    .ds-token-swatch {
+      height: 3.5rem;
+      width: 100%;
+    }
+
+    .ds-token-info {
+      padding: var(--space-2) var(--space-3);
+      background-color: var(--card);
+    }
+
+    .ds-token-name {
+      font-family: var(--font-mono);
+      font-weight: var(--font-medium);
+      color: var(--foreground);
+      margin-block-end: 2px;
+    }
+
+    .ds-token-desc {
+      color: var(--muted-foreground);
+    }
+
+    /* Spacing scale */
+    .ds-space-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-block-end: var(--space-2);
+    }
+
+    .ds-space-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-8);
+      color: var(--muted-foreground);
+      width: 9rem;
+      flex-shrink: 0;
+    }
+
+    .ds-space-bar {
+      height: 1.5rem;
+      background-color: var(--primary);
+      border-radius: var(--radius-small);
+      opacity: 0.7;
+    }
+
+    .ds-space-value {
+      font-size: var(--text-8);
+      color: var(--muted-foreground);
+    }
+
+    /* Type scale */
+    .ds-type-row {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-4);
+      padding: var(--space-3) 0;
+      border-block-end: 1px solid var(--border);
+    }
+
+    .ds-type-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-8);
+      color: var(--muted-foreground);
+      min-width: 8rem;
+      flex-shrink: 0;
+    }
+
+    /* Radius demo */
+    .ds-radius-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+      flex-wrap: wrap;
+    }
+
+    .ds-radius-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-8);
+      color: var(--muted-foreground);
+      font-family: var(--font-mono);
+    }
+
+    .ds-radius-box {
+      width: 4rem;
+      height: 4rem;
+      background-color: var(--primary);
+      opacity: 0.8;
+    }
+
+    /* Shadow demo */
+    .ds-shadow-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+      flex-wrap: wrap;
+    }
+
+    .ds-shadow-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-3);
+      font-size: var(--text-8);
+      color: var(--muted-foreground);
+      font-family: var(--font-mono);
+    }
+
+    .ds-shadow-box {
+      width: 5rem;
+      height: 5rem;
+      background-color: var(--card);
+      border-radius: var(--radius-medium);
+      border: 1px solid var(--border);
+    }
+
+    /* Grid demo */
+    .ds-col-demo {
+      background-color: var(--primary);
+      opacity: 0.25;
+      border-radius: var(--radius-small);
+      height: 2rem;
+    }
+
+    /* Dual-column pair label layout */
+    .ds-pair-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3);
+    }
+
+    @media (max-width: 900px) {
+      .ds-layout { grid-template-columns: 1fr; }
+      .ds-nav { position: static; height: auto; border-inline-end: none; border-block-end: 1px solid var(--border); }
+      .ds-main { padding: var(--space-6) var(--space-4); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="ds-layout">
+
+  <!-- ── Left navigation ── -->
+  <nav class="ds-nav" aria-label="Design system navigation">
+    <a href="#" class="ds-nav-logo">oat <span>Design System</span></a>
+
+    <div class="ds-nav-group">
+      <span class="ds-nav-label">Tokens</span>
+      <ul>
+        <li><a href="#colors">Colors</a></li>
+        <li><a href="#typography">Typography</a></li>
+        <li><a href="#spacing">Spacing</a></li>
+        <li><a href="#radii">Border Radius</a></li>
+        <li><a href="#shadows">Shadows</a></li>
+        <li><a href="#transitions">Transitions &amp; Z-index</a></li>
+      </ul>
+    </div>
+
+    <div class="ds-nav-group">
+      <span class="ds-nav-label">Base</span>
+      <ul>
+        <li><a href="#base-typography">Typography Elements</a></li>
+        <li><a href="#base-inline">Inline Elements</a></li>
+      </ul>
+    </div>
+
+    <div class="ds-nav-group">
+      <span class="ds-nav-label">Components</span>
+      <ul>
+        <li><a href="#buttons">Buttons</a></li>
+        <li><a href="#badges">Badges</a></li>
+        <li><a href="#alerts">Alerts</a></li>
+        <li><a href="#forms">Forms</a></li>
+        <li><a href="#cards">Cards</a></li>
+        <li><a href="#tabs">Tabs</a></li>
+        <li><a href="#accordion">Accordion</a></li>
+        <li><a href="#dialog">Dialog</a></li>
+        <li><a href="#dropdown">Dropdown</a></li>
+        <li><a href="#tooltip">Tooltip</a></li>
+        <li><a href="#toast">Toast</a></li>
+        <li><a href="#progress">Progress &amp; Meter</a></li>
+        <li><a href="#spinner">Spinner</a></li>
+        <li><a href="#skeleton">Skeleton</a></li>
+        <li><a href="#avatar">Avatar</a></li>
+        <li><a href="#table">Table</a></li>
+        <li><a href="#grid">Grid</a></li>
+        <li><a href="#utilities">Utilities</a></li>
+      </ul>
+    </div>
+
+    <div class="ds-nav-theme">
+      <button onclick="document.documentElement.style.colorScheme = document.documentElement.style.colorScheme === 'dark' ? 'light' : 'dark'" class="outline w-100" style="justify-content: start;">
+        ☀︎ / ☾ Toggle theme
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── Main content ── -->
+  <main class="ds-main">
+
+    <!-- ════════════════════════════════════
+         DESIGN TOKENS
+         ════════════════════════════════════ -->
+
+    <section class="ds-section" id="colors">
+      <h2 class="ds-section-title">Colors</h2>
+      <p class="ds-section-desc">
+        All semantic color tokens are defined as CSS custom properties using <code>light-dark()</code> for automatic light/dark mode adaptation. Use <code>var(--token)</code> directly in CSS — no JavaScript theming needed.
+      </p>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Backgrounds &amp; Text</div>
+        <div class="ds-token-grid">
+          <div class="ds-token-card">
+            <div class="ds-token-swatch" style="background: var(--background); border-bottom: 1px solid var(--border);"></div>
+            <div class="ds-token-info"><div class="ds-token-name">--background</div><div class="ds-token-desc">Page/app background</div></div>
+          </div>
+          <div class="ds-token-card">
+            <div class="ds-token-swatch" style="background: var(--foreground);"></div>
+            <div class="ds-token-info"><div class="ds-token-name">--foreground</div><div class="ds-token-desc">Default text color</div></div>
+          </div>
+          <div class="ds-token-card">
+            <div class="ds-token-swatch" style="background: var(--card); border-bottom: 1px solid var(--border);"></div>
+            <div class="ds-token-info"><div class="ds-token-name">--card</div><div class="ds-token-desc">Card/panel background</div></div>
+          </div>
+          <div class="ds-token-card">
+            <div class="ds-token-swatch" style="background: var(--card-foreground);"></div>
+            <div class="ds-token-info"><div class="ds-token-name">--card-foreground</div><div class="ds-token-desc">Text on card backgrounds</div></div>
+          </div>
+          <div class="ds-token-card">
+            <div class="ds-token-swatch" style="background: var(--faint); border-bottom: 1px solid var(--border);"></div>
+            <div class="ds-token-info"><div class="ds-token-name">--faint</div><div class="ds-token-desc">Subtle background (code, pre)</div></div>
+          </div>
+          <div class="ds-token-card">
+            <div class="ds-token-swatch" style="background: var(--faint-foreground);"></div>
+            <div class="ds-token-info"><div class="ds-token-name">--faint-foreground</div><div class="ds-token-desc">Dim/disabled text</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Brand &amp; Interactive</div>
+        <div class="ds-token-grid">
+          <div class="ds-token-card">
+            <div class="ds-token-swatch" style="background: var(--primary);"></div>
+            <div class="ds-token-info"><div class="ds-token-name">--primary</div><div class="ds-token-desc">Primary action color (buttons, links, active states)</div></div>
+          </div>
+          <div class="ds-token-card">
+            <div class="ds-token-swatch" style="background: var(--primary-foreground);"></div>
+            <div class="ds-token-info"><div class="ds-token-name">--primary-foreground</div><div class="ds-token-desc">Text on primary backgrounds</div></div>
+          </div>
+          <div class="ds-token-card">
+            <div class="ds-token-swatch" style="background: var(--secondary);"></div>
+            <div class="ds-token-info"><div class="ds-token-name">--secondary</div><div class="ds-token-desc">Secondary/subdued button background</div></div>
+          </div>
+          <div class="ds-token-card">
+            <div class="ds-token-swatch" style="background: var(--secondary-foreground);"></div>
+            <div class="ds-token-info"><div class="ds-token-name">--secondary-foreground</div><div class="ds-token-desc">Text on secondary backgrounds</div></div>
+          </div>
+          <div class="ds-token-card">
+            <div class="ds-token-swatch" style="background: var(--muted);"></div>
+            <div class="ds-token-info"><div class="ds-token-name">--muted</div><div class="ds-token-desc">Muted background (tab list, disabled input)</div></div>
+          </div>
+          <div class="ds-token-card">
+            <div class="ds-token-swatch" style="background: var(--muted-foreground);"></div>
+            <div class="ds-token-info"><div class="ds-token-name">--muted-foreground</div><div class="ds-token-desc">Muted/secondary text, placeholders</div></div>
+          </div>
+          <div class="ds-token-card">
+            <div class="ds-token-swatch" style="background: var(--accent);"></div>
+            <div class="ds-token-info"><div class="ds-token-name">--accent</div><div class="ds-token-desc">Hover state for ghost/outline buttons, nav links</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Semantic / Status</div>
+        <div class="ds-token-grid">
+          <div class="ds-token-card">
+            <div class="ds-token-swatch" style="background: var(--danger);"></div>
+            <div class="ds-token-info"><div class="ds-token-name">--danger</div><div class="ds-token-desc">Errors, destructive actions</div></div>
+          </div>
+          <div class="ds-token-card">
+            <div class="ds-token-swatch" style="background: var(--danger-foreground);"></div>
+            <div class="ds-token-info"><div class="ds-token-name">--danger-foreground</div><div class="ds-token-desc">Text on danger backgrounds</div></div>
+          </div>
+          <div class="ds-token-card">
+            <div class="ds-token-swatch" style="background: var(--success);"></div>
+            <div class="ds-token-info"><div class="ds-token-name">--success</div><div class="ds-token-desc">Success states, positive feedback</div></div>
+          </div>
+          <div class="ds-token-card">
+            <div class="ds-token-swatch" style="background: var(--success-foreground);"></div>
+            <div class="ds-token-info"><div class="ds-token-name">--success-foreground</div><div class="ds-token-desc">Text on success backgrounds</div></div>
+          </div>
+          <div class="ds-token-card">
+            <div class="ds-token-swatch" style="background: var(--warning);"></div>
+            <div class="ds-token-info"><div class="ds-token-name">--warning</div><div class="ds-token-desc">Warnings, caution states</div></div>
+          </div>
+          <div class="ds-token-card">
+            <div class="ds-token-swatch" style="background: var(--warning-foreground);"></div>
+            <div class="ds-token-info"><div class="ds-token-name">--warning-foreground</div><div class="ds-token-desc">Text on warning backgrounds (always dark)</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Borders &amp; Focus</div>
+        <div class="ds-token-grid">
+          <div class="ds-token-card">
+            <div class="ds-token-swatch" style="background: var(--border);"></div>
+            <div class="ds-token-info"><div class="ds-token-name">--border</div><div class="ds-token-desc">Default border color for dividers, containers</div></div>
+          </div>
+          <div class="ds-token-card">
+            <div class="ds-token-swatch" style="background: var(--input);"></div>
+            <div class="ds-token-info"><div class="ds-token-name">--input</div><div class="ds-token-desc">Input border and switch idle color</div></div>
+          </div>
+          <div class="ds-token-card">
+            <div class="ds-token-swatch" style="background: var(--ring);"></div>
+            <div class="ds-token-info"><div class="ds-token-name">--ring</div><div class="ds-token-desc">Focus ring / outline color</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Typography tokens ── -->
+    <section class="ds-section" id="typography">
+      <h2 class="ds-section-title">Typography</h2>
+      <p class="ds-section-desc">
+        The type scale uses fluid <code>clamp()</code> for the top four sizes. Fonts default to the system stack via <code>--font-sans</code> and <code>--font-mono</code>.
+      </p>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Type Scale</div>
+        <div class="ds-preview">
+          <div class="ds-type-row"><span class="ds-type-label">--text-1 (h1)</span><span style="font-size: var(--text-1); font-weight: var(--font-semibold);">The quick brown fox</span></div>
+          <div class="ds-type-row"><span class="ds-type-label">--text-2 (h2)</span><span style="font-size: var(--text-2); font-weight: var(--font-semibold);">The quick brown fox</span></div>
+          <div class="ds-type-row"><span class="ds-type-label">--text-3 (h3)</span><span style="font-size: var(--text-3); font-weight: var(--font-semibold);">The quick brown fox</span></div>
+          <div class="ds-type-row"><span class="ds-type-label">--text-4 (h4)</span><span style="font-size: var(--text-4); font-weight: var(--font-semibold);">The quick brown fox</span></div>
+          <div class="ds-type-row"><span class="ds-type-label">--text-5</span><span style="font-size: var(--text-5);">The quick brown fox jumps over the lazy dog</span></div>
+          <div class="ds-type-row"><span class="ds-type-label">--text-6 / regular</span><span style="font-size: var(--text-6);">The quick brown fox jumps over the lazy dog</span></div>
+          <div class="ds-type-row"><span class="ds-type-label">--text-7 (small UI)</span><span style="font-size: var(--text-7);">The quick brown fox jumps over the lazy dog</span></div>
+          <div class="ds-type-row" style="border: none;"><span class="ds-type-label">--text-8 (tiny)</span><span style="font-size: var(--text-8);">The quick brown fox jumps over the lazy dog — 0.75rem</span></div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Font Weights</div>
+        <div class="ds-preview">
+          <div class="ds-type-row"><span class="ds-type-label">--font-normal (400)</span><span style="font-weight: 400;">Normal weight text — paragraph body copy</span></div>
+          <div class="ds-type-row"><span class="ds-type-label">--font-medium (500)</span><span style="font-weight: 500;">Medium weight text — labels, tabs, menu items</span></div>
+          <div class="ds-type-row" style="border: none;"><span class="ds-type-label">--font-semibold (600)</span><span style="font-weight: 600;">Semibold weight text — headings, emphasis</span></div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Font Families</div>
+        <div class="ds-preview">
+          <div class="ds-type-row"><span class="ds-type-label">--font-sans</span><span style="font-family: var(--font-sans);">system-ui, sans-serif — The default font for all UI</span></div>
+          <div class="ds-type-row" style="border: none;"><span class="ds-type-label">--font-mono</span><span style="font-family: var(--font-mono);">ui-monospace, Consolas — code, pre, kbd</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Spacing tokens ── -->
+    <section class="ds-section" id="spacing">
+      <h2 class="ds-section-title">Spacing</h2>
+      <p class="ds-section-desc">
+        A 4px base scale (<code>--space-1 = 0.25rem</code>) with named steps. Used throughout via <code>var(--space-N)</code>. Also: <code>--bar-height: 0.5rem</code> for progress/range track height.
+      </p>
+      <div class="ds-preview">
+        <div class="ds-space-row"><span class="ds-space-label">--space-1  (4px)</span><div class="ds-space-bar" style="width: var(--space-1);"></div><span class="ds-space-value">0.25rem</span></div>
+        <div class="ds-space-row"><span class="ds-space-label">--space-2  (8px)</span><div class="ds-space-bar" style="width: calc(var(--space-2) * 8);"></div><span class="ds-space-value">0.5rem</span></div>
+        <div class="ds-space-row"><span class="ds-space-label">--space-3  (12px)</span><div class="ds-space-bar" style="width: calc(var(--space-3) * 8);"></div><span class="ds-space-value">0.75rem</span></div>
+        <div class="ds-space-row"><span class="ds-space-label">--space-4  (16px)</span><div class="ds-space-bar" style="width: calc(var(--space-4) * 8);"></div><span class="ds-space-value">1rem</span></div>
+        <div class="ds-space-row"><span class="ds-space-label">--space-5  (20px)</span><div class="ds-space-bar" style="width: calc(var(--space-5) * 8);"></div><span class="ds-space-value">1.25rem</span></div>
+        <div class="ds-space-row"><span class="ds-space-label">--space-6  (24px)</span><div class="ds-space-bar" style="width: calc(var(--space-6) * 8);"></div><span class="ds-space-value">1.5rem</span></div>
+        <div class="ds-space-row"><span class="ds-space-label">--space-8  (32px)</span><div class="ds-space-bar" style="width: calc(var(--space-8) * 8);"></div><span class="ds-space-value">2rem</span></div>
+        <div class="ds-space-row"><span class="ds-space-label">--space-10 (40px)</span><div class="ds-space-bar" style="width: calc(var(--space-10) * 8);"></div><span class="ds-space-value">2.5rem</span></div>
+        <div class="ds-space-row"><span class="ds-space-label">--space-12 (48px)</span><div class="ds-space-bar" style="width: calc(var(--space-12) * 8);"></div><span class="ds-space-value">3rem</span></div>
+        <div class="ds-space-row"><span class="ds-space-label">--space-14 (56px)</span><div class="ds-space-bar" style="width: calc(var(--space-14) * 8);"></div><span class="ds-space-value">3.5rem</span></div>
+        <div class="ds-space-row"><span class="ds-space-label">--space-16 (64px)</span><div class="ds-space-bar" style="width: calc(var(--space-16) * 8);"></div><span class="ds-space-value">4rem</span></div>
+        <div class="ds-space-row"><span class="ds-space-label">--space-18 (72px)</span><div class="ds-space-bar" style="width: calc(var(--space-18) * 8);"></div><span class="ds-space-value">4.5rem</span></div>
+      </div>
+    </section>
+
+    <!-- ── Border Radius tokens ── -->
+    <section class="ds-section" id="radii">
+      <h2 class="ds-section-title">Border Radius</h2>
+      <p class="ds-section-desc">Four radius tokens cover micro, default, large, and fully-rounded shapes.</p>
+      <div class="ds-preview">
+        <div class="ds-radius-row">
+          <div class="ds-radius-item"><div class="ds-radius-box" style="border-radius: var(--radius-small);"></div>--radius-small<br>0.125rem</div>
+          <div class="ds-radius-item"><div class="ds-radius-box" style="border-radius: var(--radius-medium);"></div>--radius-medium<br>0.375rem</div>
+          <div class="ds-radius-item"><div class="ds-radius-box" style="border-radius: var(--radius-large);"></div>--radius-large<br>0.75rem</div>
+          <div class="ds-radius-item"><div class="ds-radius-box" style="border-radius: var(--radius-full);"></div>--radius-full<br>9999px</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Shadows ── -->
+    <section class="ds-section" id="shadows">
+      <h2 class="ds-section-title">Shadows</h2>
+      <p class="ds-section-desc">Three elevation levels for surfacing elements above the page.</p>
+      <div class="ds-preview padded">
+        <div class="ds-shadow-row">
+          <div class="ds-shadow-item"><div class="ds-shadow-box" style="box-shadow: var(--shadow-small);"></div>--shadow-small<br>Subtle lift</div>
+          <div class="ds-shadow-item"><div class="ds-shadow-box" style="box-shadow: var(--shadow-medium);"></div>--shadow-medium<br>Dropdowns, popovers</div>
+          <div class="ds-shadow-item"><div class="ds-shadow-box" style="box-shadow: var(--shadow-large);"></div>--shadow-large<br>Dialogs, drawers</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Transitions & Z-index ── -->
+    <section class="ds-section" id="transitions">
+      <h2 class="ds-section-title">Transitions &amp; Z-index</h2>
+      <p class="ds-section-desc">Easing curve: <code>cubic-bezier(0.4, 0, 0.2, 1)</code> — standard material easing.</p>
+      <div class="ds-preview">
+        <div class="ds-type-row"><span class="ds-type-label">--transition-fast</span><span>120ms — hover states, small state changes</span></div>
+        <div class="ds-type-row"><span class="ds-type-label">--transition</span><span>200ms — component open/close, slide, scale</span></div>
+        <div class="ds-type-row"><span class="ds-type-label">--leading-normal</span><span>1.5 — default line-height for body text</span></div>
+        <div class="ds-type-row"><span class="ds-type-label">--z-dropdown</span><span>50 — dropdowns, popovers</span></div>
+        <div class="ds-type-row" style="border: none;"><span class="ds-type-label">--z-modal</span><span>200 — dialogs, overlays</span></div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         BASE ELEMENTS
+         ════════════════════════════════════ -->
+
+    <section class="ds-section" id="base-typography">
+      <h2 class="ds-section-title">Typography Elements</h2>
+      <p class="ds-section-desc">Semantic HTML elements are styled directly — no classes required.</p>
+      <div class="ds-preview">
+        <h1>Heading 1 — <code>h1</code></h1>
+        <h2>Heading 2 — <code>h2</code></h2>
+        <h3>Heading 3 — <code>h3</code></h3>
+        <h4>Heading 4 — <code>h4</code></h4>
+        <h5>Heading 5 — <code>h5</code></h5>
+        <h6>Heading 6 — <code>h6</code></h6>
+        <p>Body paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <a href="#">This is a link</a> within body text.</p>
+        <blockquote>This is a blockquote — useful for pulling out notable quotes or citations from longer content.</blockquote>
+        <ul>
+          <li>Unordered list item one</li>
+          <li>Unordered list item two</li>
+          <li>Unordered list item three</li>
+        </ul>
+        <ol>
+          <li>Ordered list item one</li>
+          <li>Ordered list item two</li>
+          <li>Ordered list item three</li>
+        </ol>
+        <hr>
+        <pre><code>// Preformatted code block
+const greeting = 'Hello, oat!';
+console.log(greeting);</code></pre>
+      </div>
+    </section>
+
+    <section class="ds-section" id="base-inline">
+      <h2 class="ds-section-title">Inline Elements</h2>
+      <div class="ds-preview">
+        <p>
+          Inline <code>code</code> snippet. Text with <strong>strong/bold</strong> and <em>italic/emphasis</em>.
+          The <small>small element</small> for fine print. <mark>Highlighted text</mark> for emphasis.
+          <a href="#">Anchor link</a> with underline offset.
+        </p>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         BUTTONS
+         ════════════════════════════════════ -->
+
+    <section class="ds-section" id="buttons">
+      <h2 class="ds-section-title">Buttons</h2>
+      <p class="ds-section-desc">
+        Styled directly on <code>&lt;button&gt;</code>, <code>&lt;input type="submit/reset/button"&gt;</code>, and <code>&lt;a class="button"&gt;</code>.
+        Variants via <code>data-variant</code>, styles via classes (<code>.outline</code>, <code>.ghost</code>), sizes via <code>.small</code> / <code>.large</code>.
+      </p>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Variants</div>
+        <div class="ds-preview">
+          <div class="hstack">
+            <button>Primary</button>
+            <button data-variant="secondary">Secondary</button>
+            <button data-variant="danger">Danger</button>
+            <button disabled>Disabled</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Outline</div>
+        <div class="ds-preview">
+          <div class="hstack">
+            <button class="outline">Outline</button>
+            <button class="outline" data-variant="secondary">Secondary</button>
+            <button class="outline" data-variant="danger">Danger</button>
+            <button class="outline" disabled>Disabled</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Ghost</div>
+        <div class="ds-preview">
+          <div class="hstack">
+            <button class="ghost">Ghost</button>
+            <button class="ghost" data-variant="secondary">Secondary</button>
+            <button class="ghost" data-variant="danger">Danger</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Sizes</div>
+        <div class="ds-preview">
+          <div class="hstack items-center">
+            <button class="small">Small</button>
+            <button>Default</button>
+            <button class="large">Large</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Icon Buttons</div>
+        <div class="ds-preview">
+          <div class="hstack items-center">
+            <button class="icon small" aria-label="Close">✕</button>
+            <button class="icon" aria-label="Add">+</button>
+            <button class="icon large" aria-label="Search">⌕</button>
+            <button class="icon outline" aria-label="Settings">⚙</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Button Group — <code>menu.buttons</code></div>
+        <div class="ds-preview">
+          <div class="hstack gap-4">
+            <menu class="buttons">
+              <li><button>Left</button></li>
+              <li><button>Center</button></li>
+              <li><button>Right</button></li>
+            </menu>
+            <menu class="buttons">
+              <li><button class="outline">A</button></li>
+              <li><button class="outline">B</button></li>
+              <li><button class="outline">C</button></li>
+            </menu>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Link Button &amp; File Input</div>
+        <div class="ds-preview">
+          <div class="hstack">
+            <a class="button" href="#">Link as Button</a>
+            <a class="button outline" href="#">Outline Link</a>
+            <input type="file">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         BADGES
+         ════════════════════════════════════ -->
+
+    <section class="ds-section" id="badges">
+      <h2 class="ds-section-title">Badges</h2>
+      <p class="ds-section-desc">Small pill labels via <code>.badge</code>. Semantic variants via additional classes.</p>
+      <div class="ds-preview">
+        <div class="hstack">
+          <span class="badge">Primary</span>
+          <span class="badge secondary">Secondary</span>
+          <span class="badge outline">Outline</span>
+          <span class="badge success">Success</span>
+          <span class="badge warning">Warning</span>
+          <span class="badge danger">Danger</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         ALERTS
+         ════════════════════════════════════ -->
+
+    <section class="ds-section" id="alerts">
+      <h2 class="ds-section-title">Alerts</h2>
+      <p class="ds-section-desc">
+        Styled on <code>role="alert"</code>. Default has a border; semantic variants use <code>data-variant</code> with tinted backgrounds instead.
+      </p>
+      <div class="ds-preview">
+        <div class="vstack">
+          <div role="alert">
+            <strong>Note:</strong> Default alert — uses border style.
+          </div>
+          <div role="alert" data-variant="danger">
+            <strong>Error:</strong> Something went wrong. <a href="#">Try again</a>
+          </div>
+          <div role="alert" data-variant="success">
+            <strong>Success:</strong> Your changes have been saved successfully.
+          </div>
+          <div role="alert" data-variant="warning">
+            <strong>Warning:</strong> Your session will expire in 5 minutes.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         FORMS
+         ════════════════════════════════════ -->
+
+    <section class="ds-section" id="forms">
+      <h2 class="ds-section-title">Forms</h2>
+      <p class="ds-section-desc">
+        Form elements are styled on native HTML — no wrapper classes needed. State management via <code>aria-invalid</code> and <code>data-field</code> attributes.
+      </p>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Text Inputs &amp; Textarea</div>
+        <div class="ds-preview">
+          <div style="max-width: 28rem;" class="vstack">
+            <div data-field>
+              <label for="name">Full Name
+                <input id="name" type="text" placeholder="Jane Smith">
+              </label>
+            </div>
+            <div data-field>
+              <label for="email">Email Address
+                <input id="email" type="email" placeholder="jane@example.com">
+              </label>
+            </div>
+            <div data-field="error">
+              <label for="user-err">Username
+                <input id="user-err" type="text" value="bad val" aria-invalid="true" aria-describedby="user-err-msg">
+              </label>
+              <div class="error" id="user-err-msg">Username must be at least 3 characters.</div>
+            </div>
+            <div data-field>
+              <label for="bio">Bio
+                <textarea id="bio" placeholder="Tell us about yourself…"></textarea>
+              </label>
+              <div data-hint>Max 500 characters.</div>
+            </div>
+            <div data-field>
+              <label for="name-dis">Disabled Input
+                <input id="name-dis" type="text" value="Cannot edit" disabled>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Select</div>
+        <div class="ds-preview">
+          <div style="max-width: 16rem;">
+            <label for="role">Role
+              <select id="role">
+                <option>Select a role</option>
+                <option>Admin</option>
+                <option>Editor</option>
+                <option>Viewer</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Checkboxes, Radios &amp; Switch</div>
+        <div class="ds-preview">
+          <div class="vstack gap-2">
+            <label><input type="checkbox" checked> Receive email notifications</label>
+            <label><input type="checkbox"> Subscribe to newsletter</label>
+            <label><input type="checkbox" disabled> Disabled option</label>
+            <hr>
+            <label><input type="radio" name="plan" checked> Free plan</label>
+            <label><input type="radio" name="plan"> Pro plan</label>
+            <label><input type="radio" name="plan" disabled> Enterprise (contact us)</label>
+            <hr>
+            <label><input type="checkbox" role="switch" checked> Enable dark mode</label>
+            <label><input type="checkbox" role="switch"> Enable notifications</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Range Slider</div>
+        <div class="ds-preview">
+          <div style="max-width: 20rem;" class="vstack gap-2">
+            <label for="vol">Volume
+              <input id="vol" type="range" min="0" max="100" value="60">
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Input Group — <code>fieldset.group</code></div>
+        <div class="ds-preview">
+          <div style="max-width: 24rem;" class="vstack gap-4">
+            <fieldset class="group">
+              <legend>https://</legend>
+              <input type="text" placeholder="example.com">
+            </fieldset>
+            <fieldset class="group">
+              <input type="text" placeholder="Search…">
+              <button>Go</button>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Fieldset</div>
+        <div class="ds-preview">
+          <div style="max-width: 24rem;">
+            <fieldset>
+              <legend>Shipping Address</legend>
+              <div data-field>
+                <label for="addr-street">Street
+                  <input id="addr-street" type="text" placeholder="123 Main St">
+                </label>
+              </div>
+              <div data-field style="margin-block-end: 0;">
+                <label for="addr-city">City
+                  <input id="addr-city" type="text" placeholder="Springfield">
+                </label>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         CARDS
+         ════════════════════════════════════ -->
+
+    <section class="ds-section" id="cards">
+      <h2 class="ds-section-title">Cards</h2>
+      <p class="ds-section-desc">A surface container via <code>.card</code>. No internal structure is enforced — use heading, paragraph, or any layout inside.</p>
+      <div class="ds-preview">
+        <div class="row">
+          <div class="col-6">
+            <div class="card">
+              <h5>Card Title</h5>
+              <p class="text-light">Supporting detail text that describes the card content briefly.</p>
+              <button class="small">Action</button>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card">
+              <div class="hstack justify-between mb-2">
+                <h5 style="margin: 0;">Revenue</h5>
+                <span class="badge success">+12%</span>
+              </div>
+              <p style="font-size: var(--text-1); font-weight: var(--font-bold); margin: 0;">$24,500</p>
+              <small class="text-light">Compared to last month</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         TABS
+         ════════════════════════════════════ -->
+
+    <section class="ds-section" id="tabs">
+      <h2 class="ds-section-title">Tabs</h2>
+      <p class="ds-section-desc">
+        The <code>&lt;ot-tabs&gt;</code> WebComponent manages ARIA attributes (<code>aria-selected</code>, <code>aria-controls</code>, <code>aria-labelledby</code>), keyboard navigation (←→ arrows), and panel visibility.
+      </p>
+      <div class="ds-preview">
+        <ot-tabs>
+          <div role="tablist" aria-label="Account settings">
+            <button role="tab">Overview</button>
+            <button role="tab">Settings</button>
+            <button role="tab">Billing</button>
+          </div>
+          <div role="tabpanel">
+            <p>Overview panel — shows a summary of account activity and recent changes.</p>
+          </div>
+          <div role="tabpanel">
+            <p>Settings panel — configure preferences, notifications, and security options.</p>
+          </div>
+          <div role="tabpanel">
+            <p>Billing panel — manage your subscription plan and payment methods.</p>
+          </div>
+        </ot-tabs>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         ACCORDION
+         ════════════════════════════════════ -->
+
+    <section class="ds-section" id="accordion">
+      <h2 class="ds-section-title">Accordion</h2>
+      <p class="ds-section-desc">
+        Built on native <code>&lt;details&gt;</code> / <code>&lt;summary&gt;</code> — no JavaScript needed. Adjacent <code>&lt;details&gt;</code> elements collapse their shared borders to form a grouped accordion.
+      </p>
+      <div class="ds-preview">
+        <details>
+          <summary>What is oat?</summary>
+          <p>oat is an ultra-lightweight (~8KB combined), zero-dependency UI component library using semantic HTML, plain CSS, and native Web APIs.</p>
+        </details>
+        <details>
+          <summary>Does it require a build step?</summary>
+          <p>No build step required for usage. Simply include <code>oat.min.css</code> and <code>oat.min.js</code> in your HTML. The library uses standard Web Components and the Popover API.</p>
+        </details>
+        <details open>
+          <summary>What browsers are supported?</summary>
+          <p>oat targets modern evergreen browsers that support Web Components, Popover API, and <code>light-dark()</code> CSS function. Safari 17.4+, Chrome 114+, Firefox 117+.</p>
+        </details>
+        <details>
+          <summary>Is it framework agnostic?</summary>
+          <p>Yes. Because oat is built on standard web platform features, it works with any framework or no framework at all.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         DIALOG
+         ════════════════════════════════════ -->
+
+    <section class="ds-section" id="dialog">
+      <h2 class="ds-section-title">Dialog</h2>
+      <p class="ds-section-desc">
+        Styled on the native <code>&lt;dialog&gt;</code> element. Open via <code>element.showModal()</code> or the <code>commandfor</code>/<code>command="show-modal"</code> button attribute (polyfilled for Safari). Animated with CSS transitions.
+      </p>
+      <div class="ds-preview">
+        <div class="hstack">
+          <button commandfor="dialog-demo" command="show-modal">Open Modal</button>
+          <button commandfor="dialog-form" command="show-modal" class="outline">Open Form Dialog</button>
+        </div>
+      </div>
+
+      <dialog id="dialog-demo">
+        <header>
+          <h4>Confirm Action</h4>
+          <p>This action cannot be undone. Please review before proceeding.</p>
+        </header>
+        <div>
+          <p>Are you sure you want to delete this item? All associated data will be permanently removed from our servers.</p>
+        </div>
+        <footer>
+          <button commandfor="dialog-demo" command="close" class="outline">Cancel</button>
+          <button commandfor="dialog-demo" command="close" data-variant="danger">Delete</button>
+        </footer>
+      </dialog>
+
+      <dialog id="dialog-form">
+        <form method="dialog">
+          <header>
+            <h4>Edit Profile</h4>
+            <p>Update your display name and email address.</p>
+          </header>
+          <div>
+            <div data-field>
+              <label>Display Name<input type="text" value="Jane Smith"></label>
+            </div>
+            <div data-field style="margin-block-end: 0;">
+              <label>Email<input type="email" value="jane@example.com"></label>
+            </div>
+          </div>
+          <footer>
+            <button type="button" commandfor="dialog-form" command="close" class="outline">Cancel</button>
+            <button type="submit">Save Changes</button>
+          </footer>
+        </form>
+      </dialog>
+    </section>
+
+    <!-- ════════════════════════════════════
+         DROPDOWN
+         ════════════════════════════════════ -->
+
+    <section class="ds-section" id="dropdown">
+      <h2 class="ds-section-title">Dropdown</h2>
+      <p class="ds-section-desc">
+        The <code>&lt;ot-dropdown&gt;</code> WebComponent wraps a trigger button and a <code>popover</code> menu. It handles dynamic viewport-aware positioning, keyboard navigation (↑↓ Home End), and ARIA state.
+      </p>
+      <div class="ds-preview">
+        <div class="hstack">
+          <ot-dropdown>
+            <button popovertarget="drop1" aria-expanded="false">Options ▾</button>
+            <menu popover id="drop1" style="padding: var(--space-1);">
+              <button role="menuitem">Edit item</button>
+              <button role="menuitem">Duplicate</button>
+              <button role="menuitem">Share link</button>
+              <hr style="margin: var(--space-1) 0;">
+              <button role="menuitem" data-variant="danger" style="color: var(--danger);">Delete</button>
+            </menu>
+          </ot-dropdown>
+
+          <ot-dropdown>
+            <button class="outline" popovertarget="drop2" aria-expanded="false">Account ▾</button>
+            <menu popover id="drop2" style="padding: var(--space-1);">
+              <button role="menuitem">Profile</button>
+              <button role="menuitem">Settings</button>
+              <button role="menuitem">Billing</button>
+              <hr style="margin: var(--space-1) 0;">
+              <button role="menuitem">Sign out</button>
+            </menu>
+          </ot-dropdown>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         TOOLTIP
+         ════════════════════════════════════ -->
+
+    <section class="ds-section" id="tooltip">
+      <h2 class="ds-section-title">Tooltip</h2>
+      <p class="ds-section-desc">
+        Pure CSS tooltips via <code>data-tooltip="text"</code>. A JS enhancement automatically promotes <code>title</code> attributes to <code>data-tooltip</code>. Hover delay is 700ms.
+      </p>
+      <div class="ds-preview padded">
+        <div class="hstack justify-center">
+          <button data-tooltip="Save your changes to the database">Save</button>
+          <button class="outline" data-tooltip="Revert all unsaved changes">Reset</button>
+          <span data-tooltip="This is a tooltip on a span element" style="cursor: help; text-decoration: underline dashed; text-underline-offset: 3px;">Hover over me</span>
+          <button title="This was a title attribute — promoted by JS">Has title attr</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         TOAST
+         ════════════════════════════════════ -->
+
+    <section class="ds-section" id="toast">
+      <h2 class="ds-section-title">Toast</h2>
+      <p class="ds-section-desc">
+        Imperative API via <code>ot.toast(message, title, opts)</code>. Options: <code>variant</code> (info, success, danger, warning), <code>placement</code> (top/bottom × left/center/right), <code>duration</code> ms. Pauses on hover.
+      </p>
+      <div class="ds-preview">
+        <div class="hstack">
+          <button onclick="ot.toast('Operation completed.', 'Done', { variant: 'info' })">Default</button>
+          <button onclick="ot.toast('Your file was saved successfully.', 'Saved', { variant: 'success' })">Success</button>
+          <button onclick="ot.toast('Unable to connect to server.', 'Error', { variant: 'danger' })">Error</button>
+          <button onclick="ot.toast('Your session expires in 5 minutes.', 'Warning', { variant: 'warning' })">Warning</button>
+          <button class="outline" onclick="ot.toast('Bottom center toast.', null, { placement: 'bottom-center', variant: 'success' })">Bottom Center</button>
+          <button class="outline" onclick="ot.toast('Top left toast.', null, { placement: 'top-left' })">Top Left</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         PROGRESS & METER
+         ════════════════════════════════════ -->
+
+    <section class="ds-section" id="progress">
+      <h2 class="ds-section-title">Progress &amp; Meter</h2>
+      <p class="ds-section-desc">
+        Styled directly on <code>&lt;progress&gt;</code> and <code>&lt;meter&gt;</code>. No classes needed. Meter automatically colors based on optimum/suboptimum/bad range.
+      </p>
+      <div class="ds-sub">
+        <div class="ds-sub-title">Progress Bar</div>
+        <div class="ds-preview">
+          <div class="vstack gap-2">
+            <progress value="40" max="100"></progress>
+            <progress value="75" max="100"></progress>
+            <progress max="100"></progress><!-- indeterminate -->
+          </div>
+        </div>
+      </div>
+      <div class="ds-sub">
+        <div class="ds-sub-title">Meter</div>
+        <div class="ds-preview">
+          <div class="vstack gap-2">
+            <label>Optimum <meter value="0.8" min="0" max="1" low="0.25" high="0.75" optimum="1"></meter></label>
+            <label>Suboptimum <meter value="0.4" min="0" max="1" low="0.25" high="0.75" optimum="1"></meter></label>
+            <label>Bad <meter value="0.1" min="0" max="1" low="0.25" high="0.75" optimum="1"></meter></label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SPINNER
+         ════════════════════════════════════ -->
+
+    <section class="ds-section" id="spinner">
+      <h2 class="ds-section-title">Spinner</h2>
+      <p class="ds-section-desc">
+        Add <code>aria-busy="true"</code> to any element to show a spinner via <code>::before</code>. Use <code>data-spinner</code> for size and overlay variants.
+      </p>
+      <div class="ds-preview">
+        <div class="hstack items-center">
+          <span aria-busy="true" data-spinner="small"></span>
+          <span aria-busy="true"></span>
+          <span aria-busy="true" data-spinner="large"></span>
+        </div>
+      </div>
+      <div class="ds-sub">
+        <div class="ds-sub-title">Overlay spinner</div>
+        <div class="ds-preview">
+          <div aria-busy="true" data-spinner="overlay" class="card" style="max-width: 20rem;">
+            <h5>Loading data…</h5>
+            <p>This content is obscured while the overlay spinner is active.</p>
+            <button>Hidden action</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SKELETON
+         ════════════════════════════════════ -->
+
+    <section class="ds-section" id="skeleton">
+      <h2 class="ds-section-title">Skeleton</h2>
+      <p class="ds-section-desc">
+        Loading placeholders via <code>role="status"</code> and <code>.skeleton</code>. Add <code>.line</code> for text rows or <code>.box</code> for square shapes.
+      </p>
+      <div class="ds-preview">
+        <div class="hstack items-center gap-4">
+          <div role="status" class="skeleton box"></div>
+          <div style="flex: 1;">
+            <div role="status" class="skeleton line" style="width: 60%;"></div>
+            <div role="status" class="skeleton line" style="width: 90%;"></div>
+            <div role="status" class="skeleton line" style="width: 75%;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         AVATAR
+         ════════════════════════════════════ -->
+
+    <section class="ds-section" id="avatar">
+      <h2 class="ds-section-title">Avatar</h2>
+      <p class="ds-section-desc">
+        Circular containers via <code>figure[data-variant="avatar"]</code>. Sizes: <code>.small</code> (2rem), default (2.5rem), <code>.large</code> (3.25rem).
+        Group multiple via <code>role="group"</code> on the wrapping <code>&lt;figure&gt;</code>.
+      </p>
+      <div class="ds-sub">
+        <div class="ds-sub-title">Sizes &amp; Initials</div>
+        <div class="ds-preview">
+          <div class="hstack items-center">
+            <figure data-variant="avatar" class="small">JS</figure>
+            <figure data-variant="avatar">AB</figure>
+            <figure data-variant="avatar" class="large">CD</figure>
+          </div>
+        </div>
+      </div>
+      <div class="ds-sub">
+        <div class="ds-sub-title">Avatar Group</div>
+        <div class="ds-preview">
+          <div class="vstack gap-4">
+            <figure data-variant="avatar" role="group">
+              <figure data-variant="avatar">JD</figure>
+              <figure data-variant="avatar">SA</figure>
+              <figure data-variant="avatar">MK</figure>
+              <figure data-variant="avatar">+4</figure>
+            </figure>
+            <figure data-variant="avatar" role="group" class="large">
+              <figure data-variant="avatar">AA</figure>
+              <figure data-variant="avatar">BB</figure>
+              <figure data-variant="avatar">CC</figure>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         TABLE
+         ════════════════════════════════════ -->
+
+    <section class="ds-section" id="table">
+      <h2 class="ds-section-title">Table</h2>
+      <p class="ds-section-desc">
+        Styled on native <code>&lt;table&gt;</code>. Wrap in <code>.table</code> for horizontal scroll on small screens.
+      </p>
+      <div class="ds-preview">
+        <div class="table">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Joined</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Jane Smith</td>
+                <td>Admin</td>
+                <td><span class="badge success">Active</span></td>
+                <td>Jan 2024</td>
+              </tr>
+              <tr>
+                <td>Alex Johnson</td>
+                <td>Editor</td>
+                <td><span class="badge success">Active</span></td>
+                <td>Mar 2024</td>
+              </tr>
+              <tr>
+                <td>Sam Rivera</td>
+                <td>Viewer</td>
+                <td><span class="badge warning">Pending</span></td>
+                <td>Jun 2024</td>
+              </tr>
+              <tr>
+                <td>Morgan Lee</td>
+                <td>Editor</td>
+                <td><span class="badge outline">Inactive</span></td>
+                <td>Aug 2024</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         GRID
+         ════════════════════════════════════ -->
+
+    <section class="ds-section" id="grid">
+      <h2 class="ds-section-title">Grid</h2>
+      <p class="ds-section-desc">
+        A 12-column CSS grid. Wrap columns in <code>.row</code>, set width via <code>.col-N</code> (1–12). Use <code>.offset-N</code> to push columns. Stacks to 4 columns on mobile.
+        Configurable via <code>--grid-cols</code>, <code>--grid-gap</code>, <code>--container-max</code>.
+      </p>
+      <div class="ds-preview">
+        <div class="vstack gap-2" style="font-size: var(--text-8); font-family: var(--font-mono);">
+          <div class="row">
+            <div class="col-12"><div class="ds-col-demo" style="opacity: 0.5; display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: 600;">col-12</div></div>
+          </div>
+          <div class="row">
+            <div class="col-6"><div class="ds-col-demo" style="display: flex; align-items: center; justify-content: center; color: var(--background); font-weight: 600; opacity: 0.8;">col-6</div></div>
+            <div class="col-6"><div class="ds-col-demo" style="display: flex; align-items: center; justify-content: center; color: var(--background); font-weight: 600; opacity: 0.8;">col-6</div></div>
+          </div>
+          <div class="row">
+            <div class="col-4"><div class="ds-col-demo" style="display: flex; align-items: center; justify-content: center; color: var(--background); font-weight: 600;">col-4</div></div>
+            <div class="col-4"><div class="ds-col-demo" style="display: flex; align-items: center; justify-content: center; color: var(--background); font-weight: 600;">col-4</div></div>
+            <div class="col-4"><div class="ds-col-demo" style="display: flex; align-items: center; justify-content: center; color: var(--background); font-weight: 600;">col-4</div></div>
+          </div>
+          <div class="row">
+            <div class="col-3"><div class="ds-col-demo" style="display: flex; align-items: center; justify-content: center; color: var(--background); font-weight: 600; opacity: 0.6;">col-3</div></div>
+            <div class="col-3"><div class="ds-col-demo" style="display: flex; align-items: center; justify-content: center; color: var(--background); font-weight: 600; opacity: 0.6;">col-3</div></div>
+            <div class="col-3"><div class="ds-col-demo" style="display: flex; align-items: center; justify-content: center; color: var(--background); font-weight: 600; opacity: 0.6;">col-3</div></div>
+            <div class="col-3"><div class="ds-col-demo" style="display: flex; align-items: center; justify-content: center; color: var(--background); font-weight: 600; opacity: 0.6;">col-3</div></div>
+          </div>
+          <div class="row">
+            <div class="col-2"><div class="ds-col-demo"></div></div>
+            <div class="col-8"><div class="ds-col-demo" style="display: flex; align-items: center; justify-content: center; color: var(--background); font-weight: 600; opacity: 0.9;">col-2 + col-8 + col-2</div></div>
+            <div class="col-2"><div class="ds-col-demo"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         UTILITIES
+         ════════════════════════════════════ -->
+
+    <section class="ds-section" id="utilities">
+      <h2 class="ds-section-title">Utilities</h2>
+      <p class="ds-section-desc">Low-level utility classes for layout, spacing, and text alignment.</p>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Stack Layouts</div>
+        <div class="ds-preview">
+          <div class="vstack gap-4">
+            <div>
+              <p class="text-light mb-2" style="font-size: var(--text-8);">.hstack — horizontal flex with gap and wrap</p>
+              <div class="hstack" style="background: var(--muted); padding: var(--space-3); border-radius: var(--radius-medium);">
+                <span class="badge">Item A</span>
+                <span class="badge secondary">Item B</span>
+                <span class="badge outline">Item C</span>
+                <span class="badge danger">Item D</span>
+              </div>
+            </div>
+            <div>
+              <p class="text-light mb-2" style="font-size: var(--text-8);">.vstack — vertical flex with gap</p>
+              <div class="vstack" style="background: var(--muted); padding: var(--space-3); border-radius: var(--radius-medium); max-width: 12rem;">
+                <span class="badge">Item A</span>
+                <span class="badge secondary">Item B</span>
+                <span class="badge outline">Item C</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Text</div>
+        <div class="ds-preview">
+          <div class="vstack gap-2">
+            <p style="margin: 0;" class="text-light">.text-light — muted-foreground color</p>
+            <p style="margin: 0;" class="text-lighter">.text-lighter — faint-foreground color</p>
+            <p style="margin: 0;" class="align-center">.align-center — center text</p>
+            <p style="margin: 0;" class="align-right">.align-right — right-aligned text</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">All Utilities Reference</div>
+        <div class="ds-preview">
+          <div class="table">
+            <table>
+              <thead><tr><th>Class</th><th>Effect</th></tr></thead>
+              <tbody>
+                <tr><td><code>.hstack</code></td><td>flex, wrap, gap-3, align-items center</td></tr>
+                <tr><td><code>.vstack</code></td><td>flex-col, gap-3</td></tr>
+                <tr><td><code>.flex</code></td><td>display: flex</td></tr>
+                <tr><td><code>.flex-col</code></td><td>flex-direction: column</td></tr>
+                <tr><td><code>.items-center</code></td><td>align-items: center</td></tr>
+                <tr><td><code>.justify-center / between / end</code></td><td>justify-content variants</td></tr>
+                <tr><td><code>.gap-1 / gap-2 / gap-4</code></td><td>gap: --space-1/2/4</td></tr>
+                <tr><td><code>.mt-2 / mt-4 / mt-6</code></td><td>margin-block-start spacing</td></tr>
+                <tr><td><code>.mb-2 / mb-4 / mb-6</code></td><td>margin-block-end spacing</td></tr>
+                <tr><td><code>.p-4</code></td><td>padding: --space-4</td></tr>
+                <tr><td><code>.w-100</code></td><td>width: 100%</td></tr>
+                <tr><td><code>.align-left / center / right</code></td><td>text-align</td></tr>
+                <tr><td><code>.text-light / lighter</code></td><td>muted / faint foreground color</td></tr>
+                <tr><td><code>.unstyled</code> (ul/ol/a)</td><td>removes list markers &amp; link underline</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="dist/oat.js"></script>
+
+</body>
+</html>

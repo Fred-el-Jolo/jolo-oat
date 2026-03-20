@@ -1,8 +1,8 @@
 @layer components {
   [role="status"].skeleton {
     --_c: light-dark(
-      color-mix(in srgb, var(--muted) 15%, white),
-      color-mix(in srgb, var(--muted) 90%, var(--foreground))
+      color-mix(in srgb, var(--muted) 90%, var(--foreground)),
+      color-mix(in srgb, var(--muted) 15%, white)
     );
 
     margin-block-end: var(--space-3);
