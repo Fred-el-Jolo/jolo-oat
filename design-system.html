@@ -194,6 +194,13 @@
       color: var(--muted-foreground);
     }
 
+    .ds-token-hex {
+      font-family: var(--font-mono);
+      font-size: var(--text-8);
+      color: var(--faint-foreground);
+      margin-block-start: 3px;
+    }
+
     /* Spacing scale */
     .ds-space-row {
       display: flex;
@@ -389,27 +396,27 @@
         <div class="ds-token-grid">
           <div class="ds-token-card">
             <div class="ds-token-swatch" style="background: var(--background); border-bottom: 1px solid var(--border);"></div>
-            <div class="ds-token-info"><div class="ds-token-name">--background</div><div class="ds-token-desc">Page/app background</div></div>
+            <div class="ds-token-info"><div class="ds-token-name">--background</div><div class="ds-token-desc">Page/app background</div><div class="ds-token-hex">#fff / #09090b</div></div>
           </div>
           <div class="ds-token-card">
             <div class="ds-token-swatch" style="background: var(--foreground);"></div>
-            <div class="ds-token-info"><div class="ds-token-name">--foreground</div><div class="ds-token-desc">Default text color</div></div>
+            <div class="ds-token-info"><div class="ds-token-name">--foreground</div><div class="ds-token-desc">Default text color</div><div class="ds-token-hex">#09090b / #fafafa</div></div>
           </div>
           <div class="ds-token-card">
             <div class="ds-token-swatch" style="background: var(--card); border-bottom: 1px solid var(--border);"></div>
-            <div class="ds-token-info"><div class="ds-token-name">--card</div><div class="ds-token-desc">Card/panel background</div></div>
+            <div class="ds-token-info"><div class="ds-token-name">--card</div><div class="ds-token-desc">Card/panel background</div><div class="ds-token-hex">#fff / #18181b</div></div>
           </div>
           <div class="ds-token-card">
             <div class="ds-token-swatch" style="background: var(--card-foreground);"></div>
-            <div class="ds-token-info"><div class="ds-token-name">--card-foreground</div><div class="ds-token-desc">Text on card backgrounds</div></div>
+            <div class="ds-token-info"><div class="ds-token-name">--card-foreground</div><div class="ds-token-desc">Text on card backgrounds</div><div class="ds-token-hex">#09090b / #fafafa</div></div>
           </div>
           <div class="ds-token-card">
             <div class="ds-token-swatch" style="background: var(--faint); border-bottom: 1px solid var(--border);"></div>
-            <div class="ds-token-info"><div class="ds-token-name">--faint</div><div class="ds-token-desc">Subtle background (code, pre)</div></div>
+            <div class="ds-token-info"><div class="ds-token-name">--faint</div><div class="ds-token-desc">Subtle background (code, pre)</div><div class="ds-token-hex">#fafafa / #1e1e21</div></div>
           </div>
           <div class="ds-token-card">
             <div class="ds-token-swatch" style="background: var(--faint-foreground);"></div>
-            <div class="ds-token-info"><div class="ds-token-name">--faint-foreground</div><div class="ds-token-desc">Dim/disabled text</div></div>
+            <div class="ds-token-info"><div class="ds-token-name">--faint-foreground</div><div class="ds-token-desc">Dim/disabled text</div><div class="ds-token-hex">#a1a1aa / #71717a</div></div>
           </div>
         </div>
       </div>
@@ -419,31 +426,31 @@
         <div class="ds-token-grid">
           <div class="ds-token-card">
             <div class="ds-token-swatch" style="background: var(--primary);"></div>
-            <div class="ds-token-info"><div class="ds-token-name">--primary</div><div class="ds-token-desc">Primary action color (buttons, links, active states)</div></div>
+            <div class="ds-token-info"><div class="ds-token-name">--primary</div><div class="ds-token-desc">Primary action color (buttons, links, active states)</div><div class="ds-token-hex">#574747 / #fafafa</div></div>
           </div>
           <div class="ds-token-card">
             <div class="ds-token-swatch" style="background: var(--primary-foreground);"></div>
-            <div class="ds-token-info"><div class="ds-token-name">--primary-foreground</div><div class="ds-token-desc">Text on primary backgrounds</div></div>
+            <div class="ds-token-info"><div class="ds-token-name">--primary-foreground</div><div class="ds-token-desc">Text on primary backgrounds</div><div class="ds-token-hex">#fafafa / #18181b</div></div>
           </div>
           <div class="ds-token-card">
             <div class="ds-token-swatch" style="background: var(--secondary);"></div>
-            <div class="ds-token-info"><div class="ds-token-name">--secondary</div><div class="ds-token-desc">Secondary/subdued button background</div></div>
+            <div class="ds-token-info"><div class="ds-token-name">--secondary</div><div class="ds-token-desc">Secondary/subdued button background</div><div class="ds-token-hex">#f4f4f5 / #27272a</div></div>
           </div>
           <div class="ds-token-card">
             <div class="ds-token-swatch" style="background: var(--secondary-foreground);"></div>
-            <div class="ds-token-info"><div class="ds-token-name">--secondary-foreground</div><div class="ds-token-desc">Text on secondary backgrounds</div></div>
+            <div class="ds-token-info"><div class="ds-token-name">--secondary-foreground</div><div class="ds-token-desc">Text on secondary backgrounds</div><div class="ds-token-hex">#574747 / #fafafa</div></div>
           </div>
           <div class="ds-token-card">
             <div class="ds-token-swatch" style="background: var(--muted);"></div>
-            <div class="ds-token-info"><div class="ds-token-name">--muted</div><div class="ds-token-desc">Muted background (tab list, disabled input)</div></div>
+            <div class="ds-token-info"><div class="ds-token-name">--muted</div><div class="ds-token-desc">Muted background (tab list, disabled input)</div><div class="ds-token-hex">#f4f4f5 / #27272a</div></div>
           </div>
           <div class="ds-token-card">
             <div class="ds-token-swatch" style="background: var(--muted-foreground);"></div>
-            <div class="ds-token-info"><div class="ds-token-name">--muted-foreground</div><div class="ds-token-desc">Muted/secondary text, placeholders</div></div>
+            <div class="ds-token-info"><div class="ds-token-name">--muted-foreground</div><div class="ds-token-desc">Muted/secondary text, placeholders</div><div class="ds-token-hex">#71717a / #a1a1aa</div></div>
           </div>
           <div class="ds-token-card">
             <div class="ds-token-swatch" style="background: var(--accent);"></div>
-            <div class="ds-token-info"><div class="ds-token-name">--accent</div><div class="ds-token-desc">Hover state for ghost/outline buttons, nav links</div></div>
+            <div class="ds-token-info"><div class="ds-token-name">--accent</div><div class="ds-token-desc">Hover state for ghost/outline buttons, nav links</div><div class="ds-token-hex">#f4f4f5 / #27272a</div></div>
           </div>
         </div>
       </div>
@@ -453,27 +460,27 @@
         <div class="ds-token-grid">
           <div class="ds-token-card">
             <div class="ds-token-swatch" style="background: var(--danger);"></div>
-            <div class="ds-token-info"><div class="ds-token-name">--danger</div><div class="ds-token-desc">Errors, destructive actions</div></div>
+            <div class="ds-token-info"><div class="ds-token-name">--danger</div><div class="ds-token-desc">Errors, destructive actions</div><div class="ds-token-hex">#d32f2f / #f4807b</div></div>
           </div>
           <div class="ds-token-card">
             <div class="ds-token-swatch" style="background: var(--danger-foreground);"></div>
-            <div class="ds-token-info"><div class="ds-token-name">--danger-foreground</div><div class="ds-token-desc">Text on danger backgrounds</div></div>
+            <div class="ds-token-info"><div class="ds-token-name">--danger-foreground</div><div class="ds-token-desc">Text on danger backgrounds</div><div class="ds-token-hex">#fafafa / #18181b</div></div>
           </div>
           <div class="ds-token-card">
             <div class="ds-token-swatch" style="background: var(--success);"></div>
-            <div class="ds-token-info"><div class="ds-token-name">--success</div><div class="ds-token-desc">Success states, positive feedback</div></div>
+            <div class="ds-token-info"><div class="ds-token-name">--success</div><div class="ds-token-desc">Success states, positive feedback</div><div class="ds-token-hex">#008032 / #6cc070</div></div>
           </div>
           <div class="ds-token-card">
             <div class="ds-token-swatch" style="background: var(--success-foreground);"></div>
-            <div class="ds-token-info"><div class="ds-token-name">--success-foreground</div><div class="ds-token-desc">Text on success backgrounds</div></div>
+            <div class="ds-token-info"><div class="ds-token-name">--success-foreground</div><div class="ds-token-desc">Text on success backgrounds</div><div class="ds-token-hex">#fafafa / #18181b</div></div>
           </div>
           <div class="ds-token-card">
             <div class="ds-token-swatch" style="background: var(--warning);"></div>
-            <div class="ds-token-info"><div class="ds-token-name">--warning</div><div class="ds-token-desc">Warnings, caution states</div></div>
+            <div class="ds-token-info"><div class="ds-token-name">--warning</div><div class="ds-token-desc">Warnings, caution states</div><div class="ds-token-hex">#a65b00 / #f0a030</div></div>
           </div>
           <div class="ds-token-card">
             <div class="ds-token-swatch" style="background: var(--warning-foreground);"></div>
-            <div class="ds-token-info"><div class="ds-token-name">--warning-foreground</div><div class="ds-token-desc">Text on warning backgrounds (always dark)</div></div>
+            <div class="ds-token-info"><div class="ds-token-name">--warning-foreground</div><div class="ds-token-desc">Text on warning backgrounds (always dark)</div><div class="ds-token-hex">#09090b</div></div>
           </div>
         </div>
       </div>
@@ -483,15 +490,15 @@
         <div class="ds-token-grid">
           <div class="ds-token-card">
             <div class="ds-token-swatch" style="background: var(--border);"></div>
-            <div class="ds-token-info"><div class="ds-token-name">--border</div><div class="ds-token-desc">Default border color for dividers, containers</div></div>
+            <div class="ds-token-info"><div class="ds-token-name">--border</div><div class="ds-token-desc">Default border color for dividers, containers</div><div class="ds-token-hex">#d4d4d8 / #52525b</div></div>
           </div>
           <div class="ds-token-card">
             <div class="ds-token-swatch" style="background: var(--input);"></div>
-            <div class="ds-token-info"><div class="ds-token-name">--input</div><div class="ds-token-desc">Input border and switch idle color</div></div>
+            <div class="ds-token-info"><div class="ds-token-name">--input</div><div class="ds-token-desc">Input border and switch idle color</div><div class="ds-token-hex">#d4d4d8 / #52525b</div></div>
           </div>
           <div class="ds-token-card">
             <div class="ds-token-swatch" style="background: var(--ring);"></div>
-            <div class="ds-token-info"><div class="ds-token-name">--ring</div><div class="ds-token-desc">Focus ring / outline color</div></div>
+            <div class="ds-token-info"><div class="ds-token-name">--ring</div><div class="ds-token-desc">Focus ring / outline color</div><div class="ds-token-hex">#574747 / #d4d4d8</div></div>
           </div>
         </div>
       </div>
