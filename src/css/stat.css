@@ -1,0 +1,65 @@
+/* Dashboard KPI / stat card.
+   Usage:
+   <div class="stat">
+     <span class="stat-label">Total Patients</span>
+     <span class="stat-value">142</span>
+     <span class="stat-change positive">+3 this week</span>
+   </div>
+*/
+@layer components {
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-6);
+    background-color: var(--card);
+    color: var(--card-foreground);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-medium);
+    box-shadow: var(--shadow-small);
+
+    & .stat-label {
+      font-size: var(--text-7);
+      color: var(--muted-foreground);
+      font-weight: var(--font-medium);
+    }
+
+    & .stat-value {
+      font-size: var(--text-2);
+      font-weight: var(--font-bold);
+      line-height: 1;
+    }
+
+    & .stat-change {
+      font-size: var(--text-8);
+      color: var(--muted-foreground);
+
+      &.positive { color: var(--success); }
+      &.negative { color: var(--danger); }
+    }
+
+    & .stat-icon {
+      color: var(--muted-foreground);
+      align-self: flex-start;
+    }
+
+    /* Icon + text side-by-side layout */
+    &.row {
+      flex-direction: row;
+      align-items: center;
+      gap: var(--space-4);
+
+      & .stat-icon {
+        align-self: center;
+        flex-shrink: 0;
+      }
+
+      & .stat-body {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-1);
+        flex: 1;
+      }
+    }
+  }
+}

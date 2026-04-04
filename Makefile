@@ -16,6 +16,15 @@ CSS_FILES = src/css/00-base.css \
             src/css/card.css \
             src/css/alert.css \
             src/css/badge.css \
+            src/css/chip.css \
+            src/css/breadcrumb.css \
+            src/css/stat.css \
+            src/css/empty-state.css \
+            src/css/divider.css \
+            src/css/rating.css \
+            src/css/stepper.css \
+            src/css/timeline.css \
+            src/css/pagination.css \
             src/css/accordion.css \
             src/css/tabs.css \
             src/css/dialog.css \

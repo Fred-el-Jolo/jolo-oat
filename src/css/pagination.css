@@ -1,0 +1,74 @@
+/* Patient list / search results pagination.
+   Usage:
+   <nav aria-label="Patient list pagination">
+     <ol class="pagination">
+       <li><a href="#" aria-label="Previous page">‹</a></li>
+       <li><a href="#" aria-current="page">1</a></li>
+       <li><a href="#">2</a></li>
+       <li><a href="#">3</a></li>
+       <li class="pagination-gap"><span>…</span></li>
+       <li><a href="#">12</a></li>
+       <li><a href="#" aria-label="Next page">›</a></li>
+     </ol>
+   </nav>
+*/
+@layer components {
+  ol.pagination {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    list-style: none;
+    padding-inline-start: 0;
+    margin: 0;
+
+    & > li > :is(a, button, span) {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 2rem;
+      height: 2rem;
+      padding: 0 var(--space-2);
+      font-size: var(--text-7);
+      border-radius: var(--radius-medium);
+      border: 1px solid transparent;
+      background-color: transparent;
+      color: var(--foreground);
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color var(--transition-fast), border-color var(--transition-fast);
+
+      &:hover {
+        background-color: var(--accent);
+        border-color: var(--border);
+      }
+
+      &[aria-current="page"] {
+        background-color: var(--primary);
+        color: var(--primary-foreground);
+        border-color: var(--primary);
+        font-weight: var(--font-medium);
+        cursor: default;
+      }
+
+      &[aria-disabled="true"],
+      &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+    }
+
+    & > li.pagination-gap > span {
+      border-color: transparent;
+      background-color: transparent;
+      color: var(--muted-foreground);
+      cursor: default;
+      letter-spacing: 0.05em;
+
+      &:hover {
+        background-color: transparent;
+        border-color: transparent;
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+/* Empty state for lists, search results, dashboards with no data.
+   Usage:
+   <div class="empty-state">
+     <svg>...</svg>
+     <h3>No patients found</h3>
+     <p>Try adjusting your search or add a new patient.</p>
+     <button>Add patient</button>
+   </div>
+*/
+@layer components {
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-12) var(--space-8);
+    text-align: center;
+    color: var(--muted-foreground);
+
+    & > svg,
+    & > img {
+      width: var(--space-16);
+      height: var(--space-16);
+      margin-bottom: var(--space-6);
+      opacity: 0.35;
+    }
+
+    & > h2,
+    & > h3,
+    & > .empty-title {
+      font-size: var(--text-5);
+      font-weight: var(--font-semibold);
+      color: var(--foreground);
+      margin: 0 0 var(--space-2);
+    }
+
+    & > p,
+    & > .empty-description {
+      font-size: var(--text-7);
+      color: var(--muted-foreground);
+      max-width: 28rem;
+      margin: 0 0 var(--space-6);
+    }
+  }
+}
