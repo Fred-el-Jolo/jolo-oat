@@ -1,0 +1,49 @@
+/* Labeled divider for section separation.
+   Plain <hr> is already styled in base.
+   Usage:
+   <div class="divider">OR</div>          <!-- centered label -->
+   <div class="divider start">Section</div> <!-- left-aligned label -->
+   <div class="divider" aria-hidden="true"></div>  <!-- line only -->
+*/
+@layer components {
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--muted-foreground);
+    font-size: var(--text-7);
+    margin-block: var(--space-4);
+
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: var(--border);
+    }
+
+    &.start::before {
+      flex: 0 0 var(--space-4);
+    }
+
+    &.end::after {
+      flex: 0 0 var(--space-4);
+    }
+
+    /* Vertical divider */
+    &.vertical {
+      flex-direction: column;
+      width: 1px;
+      height: 100%;
+      margin-block: 0;
+      margin-inline: var(--space-4);
+
+      &::before,
+      &::after {
+        width: 1px;
+        height: unset;
+        flex: 1;
+      }
+    }
+  }
+}

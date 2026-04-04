@@ -1,0 +1,104 @@
+/* Likert / visual-analog scale for psychological assessments.
+   Usage:
+   <fieldset class="rating">
+     <legend>How would you rate your mood today?</legend>
+     <div class="rating-scale">
+       <span class="rating-anchor">Not at all</span>
+       <div class="rating-options">
+         <label><input type="radio" name="mood" value="1"><span>1</span></label>
+         ...
+         <label><input type="radio" name="mood" value="10"><span>10</span></label>
+       </div>
+       <span class="rating-anchor">Extremely</span>
+     </div>
+   </fieldset>
+*/
+@layer components {
+  fieldset.rating {
+    border: none;
+    padding: 0;
+    margin: 0;
+
+    & legend {
+      font-size: var(--text-7);
+      font-weight: var(--font-medium);
+      padding: 0;
+      margin-bottom: var(--space-4);
+    }
+
+    & .rating-scale {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    & .rating-anchor {
+      font-size: var(--text-8);
+      color: var(--muted-foreground);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    & .rating-options {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-2);
+      flex: 1;
+      justify-content: center;
+
+      & label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-1);
+        cursor: pointer;
+
+        & input[type="radio"] {
+          appearance: none;
+          -webkit-appearance: none;
+          width: 2.25rem;
+          height: 2.25rem;
+          border-radius: var(--radius-full);
+          border: 2px solid var(--border);
+          background-color: var(--background);
+          cursor: pointer;
+          transition: border-color var(--transition-fast), background-color var(--transition-fast);
+
+          &:hover {
+            border-color: var(--primary);
+            background-color: light-dark(
+              color-mix(in srgb, var(--primary) 12%, transparent),
+              color-mix(in srgb, var(--primary) 20%, transparent)
+            );
+          }
+
+          &:checked {
+            background-color: var(--primary);
+            border-color: var(--primary);
+          }
+
+          &:focus-visible {
+            outline: 2px solid var(--ring);
+            outline-offset: 2px;
+          }
+        }
+
+        & span {
+          font-size: var(--text-8);
+          color: var(--muted-foreground);
+          font-weight: var(--font-medium);
+        }
+      }
+    }
+
+    /* Compact variant: labels only, no number below */
+    &.compact .rating-options {
+      gap: var(--space-1);
+
+      & label input[type="radio"] {
+        width: 1.75rem;
+        height: 1.75rem;
+      }
+    }
+  }
+}
