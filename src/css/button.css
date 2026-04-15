@@ -2,6 +2,8 @@
   :is(button, [type=submit], [type=reset], [type=button], a.button), ::file-selector-button {
     --_hov: color-mix(in srgb, var(--primary), white 25%);
 
+    position: relative;
+    overflow: hidden;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -15,9 +17,8 @@
     background-color: var(--primary);
     color: var(--primary-foreground);
     border-radius: var(--radius-medium);
-    border: 1px solid;
-    border-color: rgb(from #fff r g b / 0.15) rgb(from #000 r g b / 0.2) rgb(from #000 r g b / 0.2) rgb(from #fff r g b / 0.15);
-    transition: background-color var(--transition-fast), opacity var(--transition-fast), transform var(--transition-fast);
+    border: 1px solid rgb(from #000 r g b / 0.2);
+    transition: background-color var(--transition-fast), opacity var(--transition-fast);
 
     &:not(:disabled) {
       cursor: pointer;
@@ -27,15 +28,33 @@
       background-color: var(--_hov);
     }
 
-    &:active:not(:disabled) {
-      transform: translate(1px, 1px);
+    &::after {
+      content: '';
+      position: absolute;
+      width: 150%;
+      padding-bottom: 150%;
+      border-radius: 50%;
+      top: var(--_ry, 50%);
+      left: var(--_rx, 50%);
+      transform: translate(-50%, -50%) scale(0);
+      background: rgb(from currentColor r g b / 0.2);
+      opacity: 1;
+      pointer-events: none;
+      /* Instant reset so the ripple is ready for the next click */
+      transition: transform 0s, opacity 0s;
+    }
+
+    &.is-rippling::after {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0;
+      transition: transform 0.5s ease-out, opacity 0.4s 0.1s ease-out;
     }
 
     &[data-variant="secondary"] {
       --_hov: color-mix(in srgb, var(--secondary), black 10%);
       background-color: var(--secondary);
       color: var(--secondary-foreground);
-      border-color: rgb(from #fff r g b / 0.5) rgb(from #000 r g b / 0.1) rgb(from #000 r g b / 0.1) rgb(from #fff r g b / 0.5);
+      border-color: rgb(from #000 r g b / 0.1);
     }
 
     &[data-variant="danger"] {
