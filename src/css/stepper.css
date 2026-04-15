@@ -1,0 +1,157 @@
+/* Multi-step wizard / intake form progress indicator.
+   State via data-state="active|completed" on <li>.
+   Usage (horizontal):
+   <ol class="stepper">
+     <li data-state="completed">
+       <span class="stepper-marker"></span>
+       <span class="stepper-label">Personal Info</span>
+     </li>
+     <li data-state="active">
+       <span class="stepper-marker"></span>
+       <span class="stepper-label">Medical History</span>
+     </li>
+     <li>
+       <span class="stepper-marker"></span>
+       <span class="stepper-label">Consent</span>
+     </li>
+   </ol>
+
+   Add class .vertical for vertical layout.
+   Wrap marker + label + body in a .stepper-content div for vertical variant.
+*/
+@layer components {
+  ol.stepper {
+    display: flex;
+    align-items: flex-start;
+    list-style: none;
+    padding-inline-start: 0;
+    margin: 0;
+    counter-reset: stepper-counter;
+
+    & > li {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      text-align: center;
+      counter-increment: stepper-counter;
+
+      /* Connecting line between steps */
+      &:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: calc(var(--space-5) - 1px);
+        left: calc(50% + var(--space-5));
+        right: calc(-50% + var(--space-5));
+        height: 2px;
+        background-color: var(--border);
+        transition: background-color var(--transition);
+      }
+
+      &[data-state="completed"]:not(:last-child)::after {
+        background-color: var(--primary);
+      }
+
+      & .stepper-marker {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--space-10);
+        height: var(--space-10);
+        border-radius: var(--radius-full);
+        border: 2px solid var(--border);
+        background-color: var(--background);
+        font-size: var(--text-7);
+        font-weight: var(--font-semibold);
+        color: var(--muted-foreground);
+        transition: border-color var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
+
+        &::before {
+          content: counter(stepper-counter);
+        }
+      }
+
+      & .stepper-label {
+        margin-top: var(--space-2);
+        font-size: var(--text-7);
+        font-weight: var(--font-medium);
+        color: var(--muted-foreground);
+        transition: color var(--transition-fast);
+      }
+
+      & .stepper-description {
+        font-size: var(--text-8);
+        color: var(--muted-foreground);
+        margin-top: var(--space-1);
+      }
+
+      &[data-state="active"] {
+        & .stepper-marker {
+          border-color: var(--primary);
+          background-color: var(--primary);
+          color: var(--primary-foreground);
+        }
+
+        & .stepper-label {
+          color: var(--foreground);
+        }
+      }
+
+      &[data-state="completed"] {
+        & .stepper-marker {
+          border-color: var(--primary);
+          background-color: var(--primary);
+          color: var(--primary-foreground);
+
+          &::before {
+            content: '✓';
+          }
+        }
+
+        & .stepper-label {
+          color: var(--foreground);
+        }
+      }
+    }
+
+    /* Vertical variant */
+    &.vertical {
+      flex-direction: column;
+
+      & > li {
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: start;
+        flex: unset;
+        gap: var(--space-4);
+        padding-bottom: var(--space-6);
+
+        &:last-child {
+          padding-bottom: 0;
+        }
+
+        &:not(:last-child)::after {
+          top: calc(var(--space-10) + var(--space-2));
+          left: calc(var(--space-5) - 1px);
+          right: unset;
+          width: 2px;
+          height: calc(100% - var(--space-10) - var(--space-2));
+        }
+
+        & .stepper-content {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          padding-top: var(--space-2);
+        }
+
+        & .stepper-label {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
