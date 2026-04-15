@@ -26,6 +26,14 @@
   <link rel="stylesheet" href="src/css/sidebar.css">
   <link rel="stylesheet" href="src/css/skeleton.css">
   <link rel="stylesheet" href="src/css/tooltip.css">
+  <link rel="stylesheet" href="src/css/breadcrumb.css">
+  <link rel="stylesheet" href="src/css/divider.css">
+  <link rel="stylesheet" href="src/css/empty-state.css">
+  <link rel="stylesheet" href="src/css/pagination.css">
+  <link rel="stylesheet" href="src/css/rating.css">
+  <link rel="stylesheet" href="src/css/stat.css">
+  <link rel="stylesheet" href="src/css/stepper.css">
+  <link rel="stylesheet" href="src/css/timeline.css">
   <link rel="stylesheet" href="src/css/utilities.css">
   <style>
     /* ═══════════════════════════════════════════════════════════
@@ -369,6 +377,20 @@
         <li><a href="#table">Table</a></li>
         <li><a href="#grid">Grid</a></li>
         <li><a href="#utilities">Utilities</a></li>
+      </ul>
+    </div>
+
+    <div class="ds-nav-group">
+      <span class="ds-nav-label">App Patterns</span>
+      <ul>
+        <li><a href="#breadcrumb">Breadcrumb</a></li>
+        <li><a href="#divider">Divider</a></li>
+        <li><a href="#empty-state">Empty State</a></li>
+        <li><a href="#pagination">Pagination</a></li>
+        <li><a href="#rating">Rating Scale</a></li>
+        <li><a href="#stat">Stat</a></li>
+        <li><a href="#stepper">Stepper</a></li>
+        <li><a href="#timeline">Timeline</a></li>
       </ul>
     </div>
 
@@ -1423,6 +1445,326 @@ console.log(greeting);</code></pre>
             </table>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         APP PATTERNS
+         ════════════════════════════════════ -->
+
+    <!-- ── Breadcrumb ── -->
+    <section class="ds-section" id="breadcrumb">
+      <h2 class="ds-section-title">Breadcrumb</h2>
+      <p class="ds-section-desc">
+        Navigation trail via <code>nav[aria-label="breadcrumb"]</code> wrapping a plain <code>&lt;ol&gt;</code>. The current page uses <code>aria-current="page"</code>. Separator (<code>/</code>) is CSS-generated — no markup needed.
+      </p>
+      <div class="ds-preview">
+        <div class="vstack gap-4">
+          <nav aria-label="breadcrumb">
+            <ol>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Patients</a></li>
+              <li aria-current="page">Jane Smith</li>
+            </ol>
+          </nav>
+          <nav aria-label="breadcrumb">
+            <ol>
+              <li><a href="#">Dashboard</a></li>
+              <li><a href="#">Assessments</a></li>
+              <li><a href="#">PHQ-9</a></li>
+              <li aria-current="page">Results</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Divider ── -->
+    <section class="ds-section" id="divider">
+      <h2 class="ds-section-title">Divider</h2>
+      <p class="ds-section-desc">
+        Labeled section separators via <code>.divider</code>. Label alignment: <code>.start</code> (left) or <code>.end</code> (right). An empty <code>.divider</code> renders a plain horizontal line. Add <code>.vertical</code> for an inline vertical rule.
+      </p>
+      <div class="ds-preview">
+        <div class="vstack">
+          <div class="divider">OR</div>
+          <div class="divider start">Session Notes</div>
+          <div class="divider end">Continue</div>
+          <div class="divider" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Empty State ── -->
+    <section class="ds-section" id="empty-state">
+      <h2 class="ds-section-title">Empty State</h2>
+      <p class="ds-section-desc">
+        Placeholder for lists or dashboards with no data via <code>.empty-state</code>. Place an SVG/image, heading, description, and optional action button inside.
+      </p>
+      <div class="ds-preview">
+        <div class="empty-state">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <h3>No patients found</h3>
+          <p>Try adjusting your search criteria or add a new patient to get started.</p>
+          <button>Add Patient</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Pagination ── -->
+    <section class="ds-section" id="pagination">
+      <h2 class="ds-section-title">Pagination</h2>
+      <p class="ds-section-desc">
+        Page navigation via <code>ol.pagination</code> inside a <code>&lt;nav&gt;</code>. Current page: <code>aria-current="page"</code>. Gap: <code>.pagination-gap</code>. Disabled prev/next: <code>aria-disabled="true"</code>.
+      </p>
+      <div class="ds-preview">
+        <div class="vstack gap-4">
+          <nav aria-label="Patient list navigation">
+            <ol class="pagination">
+              <li><a href="#" aria-label="Previous page" aria-disabled="true">‹</a></li>
+              <li><a href="#" aria-current="page">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li class="pagination-gap"><span>…</span></li>
+              <li><a href="#">12</a></li>
+              <li><a href="#" aria-label="Next page">›</a></li>
+            </ol>
+          </nav>
+          <nav aria-label="Assessment navigation">
+            <ol class="pagination">
+              <li><a href="#" aria-label="Previous page">‹</a></li>
+              <li><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#" aria-current="page">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li><a href="#" aria-label="Next page">›</a></li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Rating Scale ── -->
+    <section class="ds-section" id="rating">
+      <h2 class="ds-section-title">Rating Scale</h2>
+      <p class="ds-section-desc">
+        Likert / visual analog scale via <code>fieldset.rating</code>. Add <code>.compact</code> for a denser layout. Endpoint labels use <code>.rating-anchor</code>. Built entirely on native radio inputs.
+      </p>
+      <div class="ds-sub">
+        <div class="ds-sub-title">Standard (1–10)</div>
+        <div class="ds-preview">
+          <fieldset class="rating">
+            <legend>How would you rate your mood today?</legend>
+            <div class="rating-scale">
+              <span class="rating-anchor">Not at all</span>
+              <div class="rating-options">
+                <label><input type="radio" name="mood-demo" value="1"><span>1</span></label>
+                <label><input type="radio" name="mood-demo" value="2"><span>2</span></label>
+                <label><input type="radio" name="mood-demo" value="3"><span>3</span></label>
+                <label><input type="radio" name="mood-demo" value="4"><span>4</span></label>
+                <label><input type="radio" name="mood-demo" value="5" checked><span>5</span></label>
+                <label><input type="radio" name="mood-demo" value="6"><span>6</span></label>
+                <label><input type="radio" name="mood-demo" value="7"><span>7</span></label>
+                <label><input type="radio" name="mood-demo" value="8"><span>8</span></label>
+                <label><input type="radio" name="mood-demo" value="9"><span>9</span></label>
+                <label><input type="radio" name="mood-demo" value="10"><span>10</span></label>
+              </div>
+              <span class="rating-anchor">Extremely</span>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+      <div class="ds-sub">
+        <div class="ds-sub-title">Compact (0–5)</div>
+        <div class="ds-preview">
+          <fieldset class="rating compact">
+            <legend>Anxiety level</legend>
+            <div class="rating-scale">
+              <span class="rating-anchor">None</span>
+              <div class="rating-options">
+                <label><input type="radio" name="anxiety-demo" value="0"><span>0</span></label>
+                <label><input type="radio" name="anxiety-demo" value="1"><span>1</span></label>
+                <label><input type="radio" name="anxiety-demo" value="2" checked><span>2</span></label>
+                <label><input type="radio" name="anxiety-demo" value="3"><span>3</span></label>
+                <label><input type="radio" name="anxiety-demo" value="4"><span>4</span></label>
+                <label><input type="radio" name="anxiety-demo" value="5"><span>5</span></label>
+              </div>
+              <span class="rating-anchor">Severe</span>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Stat ── -->
+    <section class="ds-section" id="stat">
+      <h2 class="ds-section-title">Stat</h2>
+      <p class="ds-section-desc">
+        Dashboard KPI card via <code>.stat</code>. Inner elements: <code>.stat-label</code>, <code>.stat-value</code>, <code>.stat-change</code> (<code>.positive</code> / <code>.negative</code>), <code>.stat-icon</code>. Add <code>.row</code> for a horizontal icon + value layout with <code>.stat-body</code>.
+      </p>
+      <div class="ds-sub">
+        <div class="ds-sub-title">Default</div>
+        <div class="ds-preview">
+          <div class="row">
+            <div class="col-4">
+              <div class="stat">
+                <span class="stat-label">Total Patients</span>
+                <span class="stat-value">142</span>
+                <span class="stat-change positive">+3 this week</span>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="stat">
+                <span class="stat-label">Sessions Today</span>
+                <span class="stat-value">8</span>
+                <span class="stat-change">2 remaining</span>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="stat">
+                <span class="stat-label">Avg PHQ-9 Score</span>
+                <span class="stat-value">11.4</span>
+                <span class="stat-change negative">+1.2 vs last month</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ds-sub">
+        <div class="ds-sub-title">Row layout</div>
+        <div class="ds-preview">
+          <div class="row">
+            <div class="col-6">
+              <div class="stat row">
+                <span class="stat-icon" aria-hidden="true" style="font-size: var(--text-2);">📋</span>
+                <div class="stat-body">
+                  <span class="stat-label">Assessments Due</span>
+                  <span class="stat-value">5</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="stat row">
+                <span class="stat-icon" aria-hidden="true" style="font-size: var(--text-2);">✅</span>
+                <div class="stat-body">
+                  <span class="stat-label">Completed Today</span>
+                  <span class="stat-value">12</span>
+                  <span class="stat-change positive">On target</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Stepper ── -->
+    <section class="ds-section" id="stepper">
+      <h2 class="ds-section-title">Stepper</h2>
+      <p class="ds-section-desc">
+        Multi-step progress indicator via <code>ol.stepper</code>. Step state via <code>data-state="active|completed"</code> on <code>&lt;li&gt;</code>. Add <code>.vertical</code> for a vertical layout — wrap label + description in <code>.stepper-content</code>.
+      </p>
+      <div class="ds-sub">
+        <div class="ds-sub-title">Horizontal</div>
+        <div class="ds-preview">
+          <ol class="stepper">
+            <li data-state="completed">
+              <span class="stepper-marker"></span>
+              <span class="stepper-label">Personal Info</span>
+            </li>
+            <li data-state="completed">
+              <span class="stepper-marker"></span>
+              <span class="stepper-label">Medical History</span>
+            </li>
+            <li data-state="active">
+              <span class="stepper-marker"></span>
+              <span class="stepper-label">Assessments</span>
+            </li>
+            <li>
+              <span class="stepper-marker"></span>
+              <span class="stepper-label">Consent</span>
+            </li>
+            <li>
+              <span class="stepper-marker"></span>
+              <span class="stepper-label">Review</span>
+            </li>
+          </ol>
+        </div>
+      </div>
+      <div class="ds-sub">
+        <div class="ds-sub-title">Vertical</div>
+        <div class="ds-preview">
+          <ol class="stepper vertical" style="max-width: 24rem;">
+            <li data-state="completed">
+              <span class="stepper-marker"></span>
+              <div class="stepper-content">
+                <span class="stepper-label">Personal Info</span>
+                <span class="stepper-description">Name, DOB, contact details</span>
+              </div>
+            </li>
+            <li data-state="active">
+              <span class="stepper-marker"></span>
+              <div class="stepper-content">
+                <span class="stepper-label">Medical History</span>
+                <span class="stepper-description">Current medications and diagnoses</span>
+              </div>
+            </li>
+            <li>
+              <span class="stepper-marker"></span>
+              <div class="stepper-content">
+                <span class="stepper-label">Consent Forms</span>
+                <span class="stepper-description">Sign privacy and treatment consent</span>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Timeline ── -->
+    <section class="ds-section" id="timeline">
+      <h2 class="ds-section-title">Timeline</h2>
+      <p class="ds-section-desc">
+        Chronological event history via <code>ol.timeline</code>. Marker variants: <code>.primary</code>, <code>.success</code>, <code>.warning</code>, <code>.danger</code>. Content in <code>.timeline-content</code> with optional <code>&lt;time&gt;</code> and <code>.timeline-title</code>.
+      </p>
+      <div class="ds-preview">
+        <ol class="timeline" style="max-width: 36rem;">
+          <li>
+            <span class="timeline-marker primary"></span>
+            <div class="timeline-content">
+              <time datetime="2026-03-10">March 10, 2026</time>
+              <p class="timeline-title">Initial Assessment</p>
+              <p>Completed PHQ-9 and GAD-7. PHQ-9 score: 12/27 (moderate). Intake form signed.</p>
+            </div>
+          </li>
+          <li>
+            <span class="timeline-marker success"></span>
+            <div class="timeline-content">
+              <time datetime="2026-03-17">March 17, 2026</time>
+              <p class="timeline-title">Session 2 — CBT Introduction</p>
+              <p>Introduced thought records and cognitive restructuring. Patient reported early improvement.</p>
+            </div>
+          </li>
+          <li>
+            <span class="timeline-marker warning"></span>
+            <div class="timeline-content">
+              <time datetime="2026-03-24">March 24, 2026</time>
+              <p class="timeline-title">Session 3 — Follow-up</p>
+              <p>Reported increased anxiety mid-week. Adjusted homework exercises. Monitoring closely.</p>
+            </div>
+          </li>
+          <li>
+            <span class="timeline-marker"></span>
+            <div class="timeline-content">
+              <time datetime="2026-04-07">April 7, 2026</time>
+              <p class="timeline-title">Session 4 — Scheduled</p>
+              <p>Upcoming appointment. PHQ-9 reassessment planned.</p>
+            </div>
+          </li>
+        </ol>
       </div>
     </section>
 

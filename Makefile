@@ -16,7 +16,6 @@ CSS_FILES = src/css/00-base.css \
             src/css/card.css \
             src/css/alert.css \
             src/css/badge.css \
-            src/css/chip.css \
             src/css/breadcrumb.css \
             src/css/stat.css \
             src/css/empty-state.css \
