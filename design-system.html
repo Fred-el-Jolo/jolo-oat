@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>oat — Design System</title>
   <link rel="stylesheet" href="src/css/00-base.css">
-  <link rel="stylesheet" href="src/css/01-theme.css">
+  <link id="theme-default" rel="stylesheet" href="src/css/01-theme.css">
+  <link id="theme-childish" rel="stylesheet" href="src/css/02-childish-theme.css" disabled>
   <link rel="stylesheet" href="src/css/animations.css">
   <link rel="stylesheet" href="src/css/avatar.css">
   <link rel="stylesheet" href="src/css/button.css">
@@ -372,8 +373,12 @@
     </div>
 
     <div class="ds-nav-theme">
+      <menu class="buttons w-100" style="margin-block-end: var(--space-2);">
+        <li style="flex:1;"><button id="btn-theme-default" class="w-100" onclick="setTheme('default')" style="justify-content: center;">Default</button></li>
+        <li style="flex:1;"><button id="btn-theme-childish" class="outline w-100" onclick="setTheme('childish')" style="justify-content: center;">Childish</button></li>
+      </menu>
       <button onclick="document.documentElement.style.colorScheme = document.documentElement.style.colorScheme === 'dark' ? 'light' : 'dark'" class="outline w-100" style="justify-content: start;">
-        ☀︎ / ☾ Toggle theme
+        ☀︎ / ☾ Toggle light/dark
       </button>
     </div>
   </nav>
@@ -1425,6 +1430,14 @@ console.log(greeting);</code></pre>
 </div>
 
 <script src="dist/oat.js"></script>
+<script>
+  function setTheme(name) {
+    document.getElementById('theme-default').disabled  = (name !== 'default');
+    document.getElementById('theme-childish').disabled = (name !== 'childish');
+    document.getElementById('btn-theme-default').className  = name === 'default'  ? 'w-100' : 'outline w-100';
+    document.getElementById('btn-theme-childish').className = name === 'childish' ? 'w-100' : 'outline w-100';
+  }
+</script>
 
 </body>
 </html>
